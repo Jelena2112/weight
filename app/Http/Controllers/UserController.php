@@ -30,6 +30,6 @@ class UserController extends Controller
             'password' => $request->password
         ]);
        dd($request->all(), $request->get('password'), $request->password);
-       // test
+       // test assdaasdsad
     }
 }
