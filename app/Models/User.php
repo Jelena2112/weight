@@ -22,5 +22,9 @@ class User extends Authenticatable
         'password'
     ];
 
-    // test..
+    public function userWeights()
+    {
+        return $this->hasMany( UserWeightModel::class, 'user_id', 'id');
+    }
+
 }

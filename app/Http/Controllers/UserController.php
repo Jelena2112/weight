@@ -63,7 +63,8 @@ class UserController extends Controller
 
     public function showUser(User $user)
     {
-//        dd($user);
-        return view('singleUser');
+//        dd($user->userWeights);
+//        return view('singleUser', ['user' => $user]);
+        return view('singleUser', compact('user'));
     }
 }
