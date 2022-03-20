@@ -67,4 +67,10 @@ class UserController extends Controller
 //        return view('singleUser', ['user' => $user]);
         return view('singleUser', compact('user'));
     }
+
+    public function getAllUsers()
+    {
+        $users = User::all();
+        return view('homepage',compact('users'));
+    }
 }
