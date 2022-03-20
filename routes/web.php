@@ -16,12 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::view('/', 'layout');
-Route::view('/newUser', 'makeUser');
-Route::view('/userWeight', 'addUserWeight')->name('addWeight.get');
+
+Route::get('/user/{user}', [UserController::class, 'showUser'])->name('showUser');
 
 /**
- * Post routes
+ * User creation routes
  */
-
+Route::view('/newUser', 'makeUser');
 Route::post('/createUser', [UserController::class, 'createUser'])->name('createUser');
+
+/**
+ * User weight routes
+ */
+Route::view('/userWeight', 'addUserWeight')->name('addWeight.get');
 Route::post('/addUserWeight', [UserController::class, 'userAddWeight'])->name('addWeight.post');

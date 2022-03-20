@@ -55,5 +55,15 @@ class UserController extends Controller
 //            'current_weight' => $request->current_weight
 //        ]);
 
+        return redirect()->route('showUser',[
+            'user' => $request->user_id
+        ]);
+
+    }
+
+    public function showUser(User $user)
+    {
+//        dd($user);
+        return view('singleUser');
     }
 }
