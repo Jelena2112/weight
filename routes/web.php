@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'layout');
+Route::view('/', 'homepage');
 
 Route::get('/user/{user}', [UserController::class, 'showUser'])->name('showUser');
 
