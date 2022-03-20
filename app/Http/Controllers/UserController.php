@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserWeightModel;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -20,16 +21,39 @@ class UserController extends Controller
             'password'=> ['required', 'string']
         ]);
 
-        User::create([
-            "name" => $request->name,
-            "gender" => $request->gender,
-            "weight" => $request->weight,
-            "aiming_weight" => $request->aiming_weight,
-            "units" => $request->units,
-            'email' => $request->email,
-            'password' => $request->password
+        unset($request->all()['_token']);
+        User::create($request->all());
+
+        return redirect()->route('addWeight.get');
+
+//        User::create([
+//            "name" => $request->name,
+//            "gender" => $request->gender,
+//            "weight" => $request->weight,
+//            "aiming_weight" => $request->aiming_weight,
+//            "units" => $request->units,
+//            'email' => $request->email,
+//            'password' => $request->password
+//        ]);
+//       dd($request->all(), $request->get('password'), $request->password);
+
+
+    }
+
+    public function userAddWeight(Request $request)
+    {
+        $request->validate([
+            'user_id' => ['required', 'exists:users,id'],
+            'current_weight' => ['required', 'numeric']
         ]);
-       dd($request->all(), $request->get('password'), $request->password);
-       // test assdaasdsad
+
+        unset($request->all()['_token']);
+        UserWeightModel::create($request->all());
+//        die("X");
+//        UserWeightModel::create([
+//            'user_id' => $request->user_id,
+//            'current_weight' => $request->current_weight
+//        ]);
+
     }
 }
